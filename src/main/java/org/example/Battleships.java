@@ -99,7 +99,30 @@ public class Battleships {
     }
 
     protected static int validateCoordForShip(char[][] field, int x, int y, int position, int shipType) {
-
+        if (position == 1) {
+            for (int i = 0; i < shipType - 1; i++) {
+                if ('1' == field[y][x + i]
+                        || '1' == field[y - 1][x + i]
+                        || '1' == field[y + 1][x + i]
+                        || '1' == field[y][x + i + 1]
+                        || '1' == field[y][x + i - 1]
+                        || (x + i) > 9) {
+                    return -1;
+                }
+            }
+        } else if (position == 2) {
+            // если пользователь хочет расположить корабль вертикально
+            for (int i = 0; i < shipType - 1; i++) {
+                if ('1' == field[y][x + i]
+                        || '1' == field[y - 1][x + i]
+                        || '1' == field[y + 1][x + i]
+                        || '1' == field[y][x + i + 1]
+                        || '1' == field[y][x + i - 1]
+                        || (y + i) > 9) {
+                    return -1;
+                }
+            }
+        }
         return 0;
     }
 
